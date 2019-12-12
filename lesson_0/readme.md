@@ -1,3 +1,0 @@
-# Birinchi dars
-
-Github

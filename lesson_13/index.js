@@ -1,13 +1,8 @@
-let n = 'Ibrohim'
+// Uyga vazifa
 
-console.log(n.slice(2, 6))
-
-function slice(str, start, end) {
-    let tmp = ''
-    for (let i = start; i < end; i++) {
-        tmp += str[i]
-    }
-    return tmp
-}
-
-console.log(slice('Ibrohim', 2, 6))
+// forEach(array, callback)
+// filter(array, callback)
+// some(array, callback)
+// every(array, callback)
+// find(array, callback)
+// reduce(array, callback)

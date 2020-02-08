@@ -1,0 +1,43 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	/* justify-content: center; */
+	padding-top: 100px;
+	align-items: center;
+	color: white;
+	background-color: black;
+	height: 100vh;
+	width: 100vw;
+	font-size: 36px;
+	font-family: monospace;
+}
+
+div input, div button {
+	padding: 15px 10px;
+	font-size: 20px;
+	margin-bottom: 30px;
+	font-family: monospace;
+}
+
+li {
+	display: flex;
+	align-items: center;
+}
+
+li input {
+	margin: 0px 10px;
+}
+
+li button {
+	text-decoration: none;
+}
+
+.done {
+	text-decoration: line-through;
+}

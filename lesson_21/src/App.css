@@ -1,0 +1,15 @@
+.App {
+  text-align: center;
+  color: olivedrab;
+}
+
+.error {
+	color: tomato;
+	font-size: 10px;
+	text-align: left;
+	margin: 0;
+}
+
+.errorBorder {
+	border: 1px solid tomato;
+}

@@ -1,0 +1,52 @@
+.selectCont {
+	position: relative;
+}
+
+.display {
+	cursor: pointer;
+	min-width: 150px;
+	padding: 20px 25px;
+	border-radius: 100px;
+	background: #ffffff;
+	transition: all 0.3s ease-out;
+}
+
+.dropdown {
+	position: absolute;
+	width: 100%;
+	height: 0;
+	overflow: scroll;
+	max-height: 200px;
+	transition: all 0.3s ease-out;
+	border-radius: 0px 0px 20px 20px;
+	background: linear-gradient(145deg, #e6e6e6, #ffffff);
+	box-shadow:  20px 20px 60px #d9d9d9, -20px -20px 60px #ffffff;
+}
+
+.visible {
+	height: auto;
+}
+
+.selected {
+	background-color: #ddd;
+}
+
+.item {
+	padding: 10px 25px;
+	cursor: pointer;
+}
+
+.item:hover {
+	background-color: #ddd;
+}
+
+.active {
+	border-radius: 40px 40px 0px 0px;
+	background: linear-gradient(145deg, #e6e6e6, #ffffff);
+	box-shadow:  20px 20px 60px #d9d9d9, -20px -20px 60px #ffffff;
+}
+
+.inactive {
+	background: linear-gradient(145deg, #ffffff, #e6e6e6);
+	box-shadow:  20px 20px 60px #d9d9d9, -20px -20px 60px #ffffff;
+}

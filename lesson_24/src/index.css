@@ -10,6 +10,7 @@ body {
   display: flex;
   width: 100vw;
   height: 100vh;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   /* font-size: 48px; */
@@ -18,4 +19,12 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+input {
+	background-color: transparent;
+	border: none;
+	outline: none;
+	font-size: 1em;
+	color: white;
 }

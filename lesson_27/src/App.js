@@ -1,116 +1,41 @@
-import React from 'react';
-import Drawer from '@material-ui/core/Drawer';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
-import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import MailIcon from '@material-ui/icons/Mail';
-import { Link, BrowserRouter, Switch, Route } from 'react-router-dom';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import Avatar from '@material-ui/core/Avatar';
-import ImageIcon from '@material-ui/icons/DonutSmallRounded';
+import { useStyles } from './styles'
+import { Users } from './components/Users'
+import { UserInfo } from './components/UserInfo'
+import React, { useState, useEffect } from 'react'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import CircularProgress from '@material-ui/core/CircularProgress'
+
 
 export function App() {
-  const [open, setOpen] = React.useState(false);
+	const classes = useStyles()
+	const [users, setUsers] = useState([])
 
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
+	useEffect(() => {
+		fetch('https://randomuser.me/api/?results=50')
+			.then(res => res.json())
+			.then(users => {
+				console.log(users)
+				setUsers(users.results)
+			})
+			.catch(err => console.log(err))
+		console.log('*')
+	}, [])
 
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
-
-  return (
-    <BrowserRouter>
-      <CssBaseline />
-      <AppBar
-        position="fixed"
-      >
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap>
-            Persistent drawer
-          </Typography>
-        </Toolbar>
-      </AppBar>
-      <Drawer
-        variant="persistent"
-        anchor="left"
-        open={open}
-      >
-        <div>
-          <IconButton onClick={handleDrawerClose}>
-			<ChevronLeftIcon />
-          </IconButton>
-        </div>
-        <Divider />
-        <List>
-          {['home', 'about', 'email', 'drafts'].map((text, index) => (
-            <Link to={`/${text}`}>
-				<ListItem button key={text}>
-					<ListItemIcon><MailIcon /></ListItemIcon>
-					<ListItemText primary={text.toUpperCase()} />
-				</ListItem>
-			</Link>
-          ))}
-        </List>
-        <Divider />
-      </Drawer>
-      <main
-	  	style={{
-		  display: 'flex',
-		  flexDirection: 'column',
-		  justifyContent: 'center',
-		  alignItems: 'center',
-		  height: '100vh',
-		  width: '100vw'
-		}}
-	>
-			<Switch>
-				{['home', 'about', 'email'].map((text, index) => (
-					<Route path={`/${text}`}>
-						<Typography variant='h1'>{text.toUpperCase()}</Typography>
+	return (
+		<BrowserRouter>
+			<div className={classes.cont}>
+				<Switch>
+					<Route path="/" exact>
+						{users.length
+							? <Users users={users} />
+							: <CircularProgress />
+						}
 					</Route>
-				))}
-				<Route>
-					<List>
-						{['photos', 'gallery', 'album'].map(text => (
-							<Link to={`/drafts/${text}`}>
-								<ListItem>
-									<ListItemAvatar>
-										<Avatar><ImageIcon /></Avatar>
-									</ListItemAvatar>
-									<ListItemText primary={text} secondary="Jan 9, 2014" />
-								</ListItem>
-							</Link>
-						))}
-					</List>
-					<Switch>
-						{['photos', 'gallery', 'album'].map(text => (
-							<Route path={`/drafts/${text}`}>
-								<h1>{text}</h1>
-							</Route>
-						))}
-					</Switch>
-				</Route>
-			</Switch>
-      </main>
-    </BrowserRouter>
-  );
+					<Route path="/info">
+						<UserInfo/>
+					</Route>
+				</Switch>
+			</div>
+		</BrowserRouter>
+	)
 }
